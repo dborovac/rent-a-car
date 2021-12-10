@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { StatusCodes } = require('http-status-codes');
 const models = require('../models');
+const validator = require('../middleware/validator');
+
+router.use(validator('car'));
 
 router.post('/', async function (req, res) {
     models.Car.create({manufacturer: req.body.car.manufacturer, model: req.body.car.model, year: req.body.car.year})
@@ -33,8 +36,7 @@ router.put('/:carId', async function (req, res) {
             car.update({ manufacturer: req.body.car.manufacturer, model: req.body.car.model, year: req.body.car.year })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err))
-        })
-        .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
+        }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
 router.delete('/:carId', async function (req, res) {
