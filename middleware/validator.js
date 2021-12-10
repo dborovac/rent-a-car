@@ -1,7 +1,7 @@
 const createHttpError = require('http-errors');
 const { StatusCodes } = require('http-status-codes');
-const Joi = require('joi')
-const Validators = require('../validators')
+const Joi = require('joi');
+const Validators = require('../validators');
 
 module.exports = function(validator) {
     if (!Validators.hasOwnProperty(validator)) {
@@ -16,7 +16,6 @@ module.exports = function(validator) {
             if(err.isJoi) {
                 res.status(StatusCodes.BAD_REQUEST).json(err);
             }
-            // res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
         }
     }
 }
