@@ -13,8 +13,10 @@ module.exports = function(validator) {
             req.body = validated;
             next();
         } catch (err) {
-            if(err.isJoi) {
+            if (err.isJoi) {
                 res.status(StatusCodes.BAD_REQUEST).json(err);
+            } else {
+                res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
             }
         }
     }
