@@ -4,9 +4,7 @@ const { StatusCodes } = require('http-status-codes');
 const models = require('../models');
 const validator = require('../middleware/validator');
 
-router.use(validator('car'));
-
-router.post('/', async function (req, res) {
+router.post('/', validator('car'), async function (req, res) {
     models.Car.create({manufacturer: req.body.car.manufacturer, model: req.body.car.model, year: req.body.car.year})
         .then(car => res.status(StatusCodes.CREATED).json(car))
         .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
@@ -26,7 +24,7 @@ router.get('/:carId', async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.put('/:carId', async function (req, res) {
+router.put('/:carId', validator('car'), async function (req, res) {
     await models.Car.findByPk(req.params.carId)
         .then(car => {
             if (!car) {

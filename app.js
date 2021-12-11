@@ -9,4 +9,6 @@ app.use(express.json());
 app.use('/api/cars', carRouter);
 app.use('/api/reservations', reservationRouter);
 
-app.listen(8080);
+app.listen(8080, () => {
+    console.log("Rent-a-car service listening on port 8080...");
+});
