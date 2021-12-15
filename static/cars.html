@@ -5,11 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cars</title>
+    <style>
+        #createCarForm {display: none;}
+        #editCarForm {display: none;}
+        body {font-family: "Lucida Console", "Courier New", monospace;}
+        li {margin: 10px 0;}
+    </style>
     <script src="cars.js"></script>
 </head>
 <body onload="init()">
     <h2>Cars:</h2>
     <ul id="carList"></ul>
-    <button>Add new</button>
+    <button onclick="showCreateForm()">Add new</button>
+    <div id="createCarForm">
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="createManufacturer">
+
+        <label for="model">Model:</label>
+        <input type="text" placeholder="Enter model" name="model" id="createModel">
+
+        <label for="year">Year:</label>
+        <input type="number" placeholder="Enter year" name="year" id="createYear">
+
+        <button onclick="addCar()">Add</button>
+    </div>
+
+    <div id="editCarForm">
+        <label for="manufacturer">Manufacturer:</label>
+        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="editManufacturer">
+
+        <label for="model">Model:</label>
+        <input type="text" placeholder="Enter model" name="model" id="editModel">
+
+        <label for="year">Year:</label>
+        <input type="number" placeholder="Enter year" name="year" id="editYear">
+
+        <!-- <button onclick="editCar()">Edit</button> -->
+    </div>
 </body>
 </html>
