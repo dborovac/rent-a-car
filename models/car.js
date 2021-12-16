@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Reservation, CarDetails }) {
       this.hasMany(Reservation, { foreignKey: 'carId', as: 'reservations', onDelete: 'cascade', onUpdate: 'cascade', hooks: true });
-      this.hasOne(CarDetails);
+      this.belongsTo(CarDetails, { foreignKey: 'detailsId', as: 'details', hooks: true });
     }
   };
   Car.init({

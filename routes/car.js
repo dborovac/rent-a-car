@@ -5,9 +5,14 @@ const models = require('../models');
 const validator = require('../middleware/validator');
 
 router.post('/', validator('car'), async function (req, res) {
-    models.Car.create({manufacturer: req.body.car.manufacturer, model: req.body.car.model, year: req.body.car.year})
-        .then(car => res.status(StatusCodes.CREATED).json(car))
-        .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
+    models.Car.create({
+        manufacturer: req.body.car.manufacturer,
+        model: req.body.car.model,
+        year: req.body.car.year,
+        detailsId: req.body.car.detailsId
+    })
+    .then(car => res.status(StatusCodes.CREATED).json(car))
+    .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
 router.get('/', async function (req, res) {
@@ -30,7 +35,12 @@ router.put('/:carId', validator('car'), async function (req, res) {
             if (!car) {
                 res.status(StatusCodes.NOT_FOUND).send({ message: 'Car not found.' }).end();
             } else {
-                car.update({ manufacturer: req.body.car.manufacturer, model: req.body.car.model, year: req.body.car.year })
+                car.update({
+                    manufacturer: req.body.car.manufacturer,
+                    model: req.body.car.model,
+                    year: req.body.car.year,
+                    detailsId: req.body.car.detailsId
+                })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err))
             }
