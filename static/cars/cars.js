@@ -4,8 +4,10 @@ async function init() {
         .then(data => {
             const list = document.getElementById('carList');
             data.data.forEach(element => {
-                list.innerHTML += `<li>ID: ${element.id}, Manufacturer: ${element.manufacturer}, Model: ${element.model}, Year: ${element.year}
-                &emsp;<button onclick="showEditForm(${element.id});">Edit</button>&ensp;<button onclick="deleteCar(${element.id})">Delete</button></li>`;
+                list.innerHTML += `<li>ID: ${element.id}, Manufacturer: ${element.manufacturer}, Model: ${element.model}, Year: ${element.year}, Details id: ${element.detailsId}&emsp;
+                <button onclick="showEditForm(${element.id}, \'${element.manufacturer}\', \'${element.model}\', ${element.year}, ${element.detailsId});">Edit</button>&ensp;
+                <button onclick="deleteCar(${element.id})">Delete</button>&ensp;
+                <a href="#popup1" onclick="showCarDetails(${element.id}, ${element.detailsId})">Details</a></li>`;
             })
         })
 }
@@ -14,7 +16,7 @@ function showCreateForm() {
     document.getElementById('createCarForm').style.display = 'block';
 }
 
-function showEditForm(id) {
+function showEditForm(id, manufacturer, model, year, detailsId) {
     const editForm = document.getElementById('editCarForm');
     editForm.style.display = 'block';
     let button;
@@ -24,18 +26,24 @@ function showEditForm(id) {
         button = document.getElementById('editButton');
     }
     editForm.appendChild(button);
-    clearInputFields(editForm);
+    document.getElementById('editManufacturer').value = manufacturer;
+    document.getElementById('editModel').value = model;
+    document.getElementById('editYear').value = year;
+    document.getElementById('editDetailsId').value = detailsId;
     button.textContent = 'Edit';
     button.setAttribute('id', 'editButton');
     button.setAttribute('onclick', `editCar(${id})`);
 }
 
-function clearInputFields(editForm) {
-    for (let i = 0; i < editForm.children.length; i++) {
-        if (editForm.children[i].nodeName === 'INPUT') {
-            editForm.children[i].value = "";
-        }
-    }
+async function showCarDetails(carId, id) {
+    await fetch(`http://127.0.0.1:65535/api/cardetails/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('popupBoxTitle').textContent = carId;
+            document.getElementById('detailsDoors').textContent = data.doors;
+            document.getElementById('detailsFuel').textContent = data.fuel;
+            document.getElementById('detailsTransmission').textContent = data.transmission;
+        })
 }
 
 async function addCar() {
@@ -43,7 +51,8 @@ async function addCar() {
         car: {
             manufacturer: document.getElementById('createManufacturer').value,
             model: document.getElementById('createModel').value,
-            year: document.getElementById('createYear').value
+            year: document.getElementById('createYear').value,
+            detailsId: document.getElementById('createDetailsId').value
         }
     }
 
@@ -63,7 +72,8 @@ async function editCar(id) {
         car: {
             manufacturer: document.getElementById('editManufacturer').value,
             model: document.getElementById('editModel').value,
-            year: document.getElementById('editYear').value
+            year: document.getElementById('editYear').value,
+            detailsId: document.getElementById('editDetailsId').value
         }
     };
 

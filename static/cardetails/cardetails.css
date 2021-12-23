@@ -1,0 +1,15 @@
+#createDetailsForm {
+    display: none;
+}
+
+#editDetailsForm {
+    display: none;
+}
+
+body {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+li {
+    margin: 10px 0;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+    <link rel="stylesheet" href="cardetails.css">
+    <script src="cardetails.js"></script>
+</head>
+<body onload="init()">
+    <h2>Car details:</h2>
+    <ul id="detailsList"></ul>
+    <button onclick="showCreateForm()">Add new</button>
+    <div id="createDetailsForm">
+        <label for="doors">Doors:</label>
+        <input type="number" placeholder="Enter number of doors" name="doors" id="createDoors">
+
+        <label for="fuel">Fuel type:</label>
+        <input type="text" placeholder="Enter fuel type" name="fuel" id="createFuel">
+
+        <label for="transmission">Transmission:</label>
+        <input type="text" placeholder="Enter transmission" name="transmission" id="createTransmission">
+
+        <button onclick="addDetails()">Add</button>
+    </div>
+
+    <div id="editDetailsForm">
+        <label for="doors">Doors:</label>
+        <input type="number" placeholder="Enter number of doors" name="doors" id="editDoors">
+
+        <label for="fuel">Fuel type:</label>
+        <input type="text" placeholder="Enter fuel type" name="fuel" id="editFuel">
+
+        <label for="transmission">Transmission:</label>
+        <input type="text" placeholder="Enter transmission" name="transmission" id="editTransmission">
+    </div>
+</body>
+</html>

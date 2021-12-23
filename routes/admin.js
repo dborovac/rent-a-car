@@ -11,7 +11,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/cars', (req, res) => {
-    res.sendFile('cars.html', {root: './static'});
+    res.sendFile('cars.html', {root: './static/cars'});
+});
+
+router.get('/cardetails', (req, res) => {
+    res.sendFile('cardetails.html', {root: './static/cardetails'});
 });
 
 module.exports = router;

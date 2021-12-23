@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cars</title>
-    <style>
-        #createCarForm {display: none;}
-        #editCarForm {display: none;}
-        body {font-family: "Lucida Console", "Courier New", monospace;}
-        li {margin: 10px 0;}
-    </style>
+    <link rel="stylesheet" href="cars.css">
     <script src="cars.js"></script>
 </head>
 <body onload="init()">
@@ -27,6 +22,9 @@
         <label for="year">Year:</label>
         <input type="number" placeholder="Enter year" name="year" id="createYear">
 
+        <label for="detailsId">Details id:</label>
+        <input type="number" placeholder="Enter details id" name="detailsId" id="createDetailsId">
+
         <button onclick="addCar()">Add</button>
     </div>
 
@@ -40,7 +38,20 @@
         <label for="year">Year:</label>
         <input type="number" placeholder="Enter year" name="year" id="editYear">
 
-        <!-- <button onclick="editCar()">Edit</button> -->
+        <label for="detailsId">Details id:</label>
+        <input type="number" placeholder="Enter details id" name="detailsId" id="editDetailsId">
+    </div>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Details of car #<span id="popupBoxTitle"></span></h2>
+            <a class="close" href="#">&times;</a>
+            <ul>
+                <li>Number of doors: <span id="detailsDoors"></span></li>
+                <li>Fuel type: <span id="detailsFuel"></span></li>
+                <li>Transmission: <span id="detailsTransmission"></span></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
