@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="reservations.css">
+    <script src="dom.js"></script>
+    <script src="reservations.js"></script>
+</head>
+<body onload="init()">
+    <div class="navigation">
+        <h2>Reservations:</h2>
+        <a href="/admin/cars">Cars</a>
+        <a href="/admin/cardetails">Car details</a>
+        <a href="/admin/users">Users</a>
+    </div>
+    <hr>
+    <ul id="reservationList"></ul>
+    <button onclick="showCreateForm()">Add new</button>
+    <div id="createReservationForm">
+        <label for="startDate">Start date:</label>
+        <input type="date" placeholder="Enter start date" name="startDate" id="createStartDate">
+
+        <label for="endDate">End date:</label>
+        <input type="date" placeholder="Enter end date" name="endDate" id="createEndDate">
+
+        <label for="price">Price per day:</label>
+        <input type="number" placeholder="Enter price" name="price" id="createPrice">
+
+        <label for="carId">Car ID:</label>
+        <input type="number" placeholder="Enter car id" name="carId" id="createCarId">
+
+        <button onclick="addReservation()">Add</button>
+    </div>
+
+    <div id="editReservationForm">
+        <label for="startDate">Start date:</label>
+        <input type="date" placeholder="Enter start date" name="startDate" id="editStartDate">
+
+        <label for="endDate">End date:</label>
+        <input type="date" placeholder="Enter end date" name="endDate" id="editEndDate">
+
+        <label for="price">Transmission:</label>
+        <input type="number" placeholder="Enter price" name="price" id="editPrice">
+
+        <label for="carId">Car ID:</label>
+        <input type="number" placeholder="Enter car id" name="carId" id="editCarId">
+    </div>
+
+    <footer>
+        <marquee>Dario Borovac RN 105/2020</marquee>
+    </footer>
+</body>
+</html>

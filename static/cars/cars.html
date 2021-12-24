@@ -6,10 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cars</title>
     <link rel="stylesheet" href="cars.css">
+    <script src="dom.js"></script>
     <script src="cars.js"></script>
 </head>
 <body onload="init()">
-    <h2>Cars:</h2>
+    <div class="navigation">
+        <h2>Cars:</h2>
+        <a href="/admin/cardetails">Car details</a>
+        <a href="/admin/reservations">Reservations</a>
+        <a href="/admin/users">Users</a>
+    </div>
+    <hr>
     <ul id="carList"></ul>
     <button onclick="showCreateForm()">Add new</button>
     <div id="createCarForm">
@@ -53,5 +60,9 @@
             </ul>
         </div>
     </div>
+
+    <footer>
+        <marquee>Dario Borovac RN 105/2020</marquee>
+    </footer>
 </body>
 </html>

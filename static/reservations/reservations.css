@@ -12,11 +12,11 @@ body {
     margin-right: 15px;
 }
 
-#createDetailsForm {
+#createReservationForm {
     display: none;
 }
 
-#editDetailsForm {
+#editReservationForm {
     display: none;
 }
 

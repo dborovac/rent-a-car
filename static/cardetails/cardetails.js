@@ -1,36 +1,12 @@
 async function init() {
+    const list = document.getElementById('detailsList');
     await fetch('http://127.0.0.1:65535/api/cardetails')
         .then(res => res.json())
         .then(data => {
-            const list = document.getElementById('detailsList');
             data.data.forEach(element => {
-                list.innerHTML += `<li>ID: ${element.id}, Doors: ${element.doors}, Fuel: ${element.fuel}, Transmission: ${element.transmission}&emsp;
-                <button onclick="showEditForm(${element.id}, ${element.doors}, \'${element.fuel}\', \'${element.transmission}\');">Edit</button>&ensp;
-                <button onclick="deleteDetails(${element.id})">Delete</button></li>`;
+                appendListItem(list, element);
             })
         })
-}
-
-function showCreateForm() {
-    document.getElementById('createDetailsForm').style.display = 'block';
-}
-
-function showEditForm(id, doors, fuel, transmission) {
-    const editForm = document.getElementById('editDetailsForm');
-    editForm.style.display = 'block';
-    let button;
-    if (!document.getElementById('editButton')) {
-        button = document.createElement('button');
-    } else {
-        button = document.getElementById('editButton');
-    }
-    editForm.appendChild(button);
-    document.getElementById('editDoors').value = doors;
-    document.getElementById('editFuel').value = fuel;
-    document.getElementById('editTransmission').value = transmission;
-    button.textContent = 'Edit';
-    button.setAttribute('id', 'editButton');
-    button.setAttribute('onclick', `editDetails(${id})`);
 }
 
 async function addDetails() {

@@ -6,14 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent-A-Car Administration</title>
     <style>
-        a {display: block;}
-        body {font-family: "Lucida Console", "Courier New", monospace;}
+        a {
+            display:block;
+            width: 25%;
+        }
+        body {
+            font-family: "Lucida Console", "Courier New", monospace;
+            background-color: #B1D0E0;
+        }
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .links a {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-    <a href="/admin/cars"><h1>Cars</h1></a>
-    <a href="/admin/cardetails"><h1>Car details</h1></a>
-    <a href="/admin/reservations"><h1>Reservations</h1></a>
-    <a href="/admin/users"><h1>Users</h1></a>
+    <div class="links">
+        <a href="/admin/cars"><h1>Cars</h1></a>
+        <a href="/admin/cardetails"><h1>Car details</h1></a>
+        <a href="/admin/reservations"><h1>Reservations</h1></a>
+        <a href="/admin/users"><h1>Users</h1></a>
+    </div>
 </body>
 </html>
