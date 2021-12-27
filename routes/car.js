@@ -12,7 +12,13 @@ router.post('/', validator('car'), async function (req, res) {
         detailsId: req.body.car.detailsId
     })
     .then(car => res.status(StatusCodes.CREATED).json(car))
-    .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
+    .catch(err => {
+        if (err.name == 'SequelizeForeignKeyConstraintError') {
+            res.status(StatusCodes.BAD_REQUEST).send({ message: 'Details with given ID do not exist.' });
+        } else {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        }
+    });
 });
 
 router.get('/', async function (req, res) {
@@ -42,7 +48,13 @@ router.put('/:carId', validator('car'), async function (req, res) {
                     detailsId: req.body.car.detailsId
                 })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
-                .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err))
+                .catch(err => {
+                    if (err.name == 'SequelizeForeignKeyConstraintError') {
+                        res.status(StatusCodes.BAD_REQUEST).send({ message: 'Details with given ID do not exist.' });
+                    } else {
+                        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+                    }
+                });
             }
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });

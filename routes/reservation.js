@@ -11,7 +11,13 @@ router.post('/', validator('reservation'), async function (req, res) {
         pricePerDay: req.body.reservation.pricePerDay,
         carId: req.body.reservation.carId
     }).then(reservation => res.status(StatusCodes.CREATED).json(reservation))
-    .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
+    .catch(err => {
+        if (err.name == 'SequelizeForeignKeyConstraintError') {
+            res.status(StatusCodes.BAD_REQUEST).send({ message: 'Car with given ID does not exist.' });
+        } else {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+        }
+    });
 });
 
 router.get('/', async function (req, res) {
@@ -40,7 +46,13 @@ router.put('/:reservationId', validator('reservation'), async function (req, res
                     pricePerDay: req.body.reservation.pricePerDay,
                     carId: req.body.reservation.carId
                 }).then(() => res.status(StatusCodes.NO_CONTENT).end())
-                .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err))
+                .catch(err => {
+                    if (err.name == 'SequelizeForeignKeyConstraintError') {
+                        res.status(StatusCodes.BAD_REQUEST).send({ message: 'Car with given ID does not exist.' });
+                    } else {
+                        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
+                    }
+                });
             }
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
