@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
+    <link rel="stylesheet" href="../common.css">
     <link rel="stylesheet" href="users.css">
+    <script src="dom.js"></script>
     <script src="users.js"></script>
 </head>
 <body onload="init()">
-    <h2>Users:</h2>
+    <div class="navigation">
+        <h2>Users:</h2>
+        <a href="/admin/cars">Cars</a>
+        <a href="/admin/cardetails">Car details</a>
+        <a href="/admin/reservations">Reservations</a>
+    </div>
+    <hr>
     <ul id="userList"></ul>
     <button onclick="showCreateForm()">Add new</button>
     <div id="createUserForm">
@@ -29,5 +37,9 @@
         <label for="password">Password:</label>
         <input type="password" placeholder="Enter password" name="password" id="editPassword">
     </div>
+
+    <footer>
+        <marquee>Dario Borovac RN 105/2020</marquee>
+    </footer>
 </body>
 </html>

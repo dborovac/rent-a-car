@@ -3,8 +3,9 @@ const router = express.Router();
 const { StatusCodes } = require('http-status-codes');
 const models = require('../models');
 const validator = require('../middleware/validator');
+const auth = require('../middleware/auth');
 
-router.post('/', validator('reservation'), async function (req, res) {
+router.post('/', [auth.authToken, auth.isModOrAdmin, validator('reservation')], async function (req, res) {
     models.Reservation.create({
         startDate: req.body.reservation.startDate,
         endDate: req.body.reservation.endDate,
@@ -34,7 +35,7 @@ router.get('/:reservationId', async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.put('/:reservationId', validator('reservation'), async function (req, res) {
+router.put('/:reservationId', [auth.authToken, auth.isModOrAdmin, validator('reservation')], async function (req, res) {
     await models.Reservation.findByPk(req.params.reservationId)
         .then(reservation => {
             if (!reservation) {
@@ -57,7 +58,7 @@ router.put('/:reservationId', validator('reservation'), async function (req, res
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.delete('/:reservationId', async function (req, res) {
+router.delete('/:reservationId', [auth.authToken, auth.isModOrAdmin], async function (req, res) {
     await models.Reservation.destroy({
         where: {
             id: req.params.reservationId

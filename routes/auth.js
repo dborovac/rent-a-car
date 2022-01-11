@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 require('dotenv').config();
 const cors = require('cors');
+const validator = require('../middleware/validator');
 
 const corsOptions = {
     origin: 'http://127.0.0.1:65535',
@@ -15,14 +16,16 @@ const corsOptions = {
 router.use(express.json());
 router.use(cors(corsOptions));
 
-router.post('/register', (req, res) => {
+router.post('/register', validator('user'), (req, res) => {
     models.User.create({
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 10),
+        role: req.body.role
     }).then(user => {
         const usr = {
             userId: user.id,
-            email: user.email
+            email: user.email,
+            role: user.role
         }
         const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
         res.status(StatusCodes.CREATED).json({token: token});
@@ -35,7 +38,8 @@ router.post('/login', (req, res) => {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 const usr = {
                     userId: user.id,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
                 const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
                 res.status(StatusCodes.OK).json({token: token});

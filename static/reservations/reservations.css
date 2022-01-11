@@ -1,39 +1,7 @@
-body {
-    font-family: "Lucida Console", "Courier New", monospace;
-    background: #F2FFE9;
-}
-
-.navigation h2 {
-    display: inline;
-}
-
-.navigation a {
-    float: right;
-    margin-right: 15px;
-}
-
 #createReservationForm {
     display: none;
 }
 
 #editReservationForm {
     display: none;
-}
-
-li {
-    margin: 10px 0;
-}
-
-.listItemControl {
-    margin: 0 10px;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 25px;
-    background: #A6CF98;
 }

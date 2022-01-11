@@ -3,8 +3,9 @@ const router = express.Router();
 const { StatusCodes } = require('http-status-codes');
 const models = require('../models');
 const validator = require('../middleware/validator');
+const auth = require('../middleware/auth');
 
-router.post('/', validator('car'), async function (req, res) {
+router.post('/', [auth.authToken, auth.isModOrAdmin, validator('car')], async function (req, res) {
     models.Car.create({
         manufacturer: req.body.car.manufacturer,
         model: req.body.car.model,
@@ -35,7 +36,7 @@ router.get('/:carId', async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.put('/:carId', validator('car'), async function (req, res) {
+router.put('/:carId', [auth.authToken, auth.isModOrAdmin, validator('car')], async function (req, res) {
     await models.Car.findByPk(req.params.carId)
         .then(car => {
             if (!car) {
@@ -59,7 +60,7 @@ router.put('/:carId', validator('car'), async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.delete('/:carId', async function (req, res) {
+router.delete('/:carId', [auth.authToken, auth.isModOrAdmin], async function (req, res) {
     await models.Car.destroy({
         where: {
             id: req.params.carId

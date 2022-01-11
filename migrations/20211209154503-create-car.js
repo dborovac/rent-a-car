@@ -17,13 +17,6 @@ module.exports = {
       year: {
         type: Sequelize.INTEGER
       },
-      // detailsId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: 'CarDetails',
-      //     key: 'id'
-      //   }
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
