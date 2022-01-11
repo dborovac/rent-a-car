@@ -32,7 +32,10 @@ async function addCar() {
 
     await fetch('http://127.0.0.1:65535/api/cars', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
         body: JSON.stringify(data)
     }).then(res => res.json()).then(data => {});
 
@@ -53,7 +56,10 @@ async function editCar(id) {
 
     await fetch(`http://127.0.0.1:65535/api/cars/${id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
         body: JSON.stringify(data)
     });
 
@@ -65,6 +71,9 @@ async function editCar(id) {
 async function deleteCar(id) {
     await fetch(`http://127.0.0.1:65535/api/cars/${id}`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        }
     });
 
     document.getElementById('carList').innerHTML = "";

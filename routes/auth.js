@@ -27,7 +27,7 @@ router.post('/register', validator('user'), (req, res) => {
             email: user.email,
             role: user.role
         }
-        const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
+        const token = jwt.sign(usr, "mys3cretjs0nw3bt0ken");
         res.status(StatusCodes.CREATED).json({token: token});
     }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
@@ -41,7 +41,7 @@ router.post('/login', (req, res) => {
                     email: user.email,
                     role: user.role
                 }
-                const token = jwt.sign(usr, process.env.ACCESS_TOKEN_SECRET);
+                const token = jwt.sign(usr, "mys3cretjs0nw3bt0ken");
                 res.status(StatusCodes.OK).json({token: token});
             } else {
                 res.status(StatusCodes.NOT_FOUND).json({msg: "Invalid credentials."});

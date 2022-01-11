@@ -9,7 +9,7 @@ function authToken(req, res, next) {
         return res.status(401).json({ msg: 'Not authorized.' });
     }
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, "mys3cretjs0nw3bt0ken", (err, user) => {
         if (err) return res.status(403).json({ msg: err });
         req.user = user;
         next();

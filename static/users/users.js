@@ -16,7 +16,10 @@ async function addUser() {
     }
     await fetch('http://127.0.0.1:65535/api/users', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
         body: JSON.stringify(data)
     }).then(res => res.json()).then(data => {});
 
@@ -33,7 +36,10 @@ async function editUser(id) {
 
     await fetch(`http://127.0.0.1:65535/api/users/${id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
         body: JSON.stringify(data)
     });
 
@@ -44,7 +50,10 @@ async function editUser(id) {
 
 async function deleteUser(id) {
     await fetch(`http://127.0.0.1:65535/api/users/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        }
     });
 
     document.getElementById('userList').innerHTML = "";
