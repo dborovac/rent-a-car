@@ -22,32 +22,32 @@
     <button onclick="showCreateForm()">Add new</button>
     <div id="createCarForm">
         <label for="manufacturer">Manufacturer:</label>
-        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="createManufacturer">
+        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="createManufacturer" required maxlength="30">
 
         <label for="model">Model:</label>
-        <input type="text" placeholder="Enter model" name="model" id="createModel">
+        <input type="text" placeholder="Enter model" name="model" id="createModel" required maxlength="50">
 
         <label for="year">Year:</label>
-        <input type="number" placeholder="Enter year" name="year" id="createYear">
+        <input type="number" placeholder="Enter year" name="year" id="createYear" required min="1900">
 
         <label for="detailsId">Details id:</label>
-        <input type="number" placeholder="Enter details id" name="detailsId" id="createDetailsId">
+        <input type="number" placeholder="Enter details id" name="detailsId" id="createDetailsId" required min="1">
 
         <button onclick="addCar()">Add</button>
     </div>
 
     <div id="editCarForm">
         <label for="manufacturer">Manufacturer:</label>
-        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="editManufacturer">
+        <input type="text" placeholder="Enter manufacturer" name="manufacturer" id="editManufacturer" required maxlength="30">
 
         <label for="model">Model:</label>
-        <input type="text" placeholder="Enter model" name="model" id="editModel">
+        <input type="text" placeholder="Enter model" name="model" id="editModel" required maxlength="50">
 
         <label for="year">Year:</label>
-        <input type="number" placeholder="Enter year" name="year" id="editYear">
+        <input type="number" placeholder="Enter year" name="year" id="editYear" required min="1900">
 
         <label for="detailsId">Details id:</label>
-        <input type="number" placeholder="Enter details id" name="detailsId" id="editDetailsId">
+        <input type="number" placeholder="Enter details id" name="detailsId" id="editDetailsId" required min="1">
     </div>
 
     <div id="popup1" class="overlay">

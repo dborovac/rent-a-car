@@ -29,3 +29,11 @@ footer {
     height: 25px;
     background: #A6CF98;
 }
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input:valid {
+    border: 2px solid black;
+}
