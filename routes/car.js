@@ -46,7 +46,8 @@ router.put('/:carId', [auth.authToken, auth.isModOrAdmin, validator('car')], asy
                     manufacturer: req.body.car.manufacturer,
                     model: req.body.car.model,
                     year: req.body.car.year,
-                    detailsId: req.body.car.detailsId
+                    detailsId: req.body.car.detailsId,
+                    image: req.body.car.image
                 })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => {

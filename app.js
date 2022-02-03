@@ -10,7 +10,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:65534',
+    origin: '*',
     optionsSuccessStatus: 200
 };
 

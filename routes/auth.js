@@ -5,16 +5,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 require('dotenv').config();
-const cors = require('cors');
 const validator = require('../middleware/validator');
 
-const corsOptions = {
-    origin: 'http://127.0.0.1:65535',
-    optionsSuccessStatus: 200
-};
-
 router.use(express.json());
-router.use(cors(corsOptions));
 
 router.post('/register', validator('user'), (req, res) => {
     models.User.create({
