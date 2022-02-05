@@ -30,4 +30,13 @@ function isModOrAdmin(req, res, next) {
     next();
 }
 
-module.exports = { authToken, isAdmin, isModOrAdmin };
+function isModOrAdminOrLoggedIn(req, res, next) {
+    console.log(req.user);
+    console.log(req.body);
+    if (!(req.user.role === 'Admin' || req.user.role === 'Moderator' || req.user.userId === req.body.reservation.userId)) {
+        return res.status(401).json({ msg: 'Not authorized.' });
+    }
+    next();
+}
+
+module.exports = { authToken, isAdmin, isModOrAdmin, isModOrAdminOrLoggedIn };

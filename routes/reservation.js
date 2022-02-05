@@ -5,12 +5,12 @@ const models = require('../models');
 const validator = require('../middleware/validator');
 const auth = require('../middleware/auth');
 
-router.post('/', [auth.authToken, auth.isModOrAdmin, validator('reservation')], async function (req, res) {
+router.post('/', [auth.authToken, auth.isModOrAdminOrLoggedIn, validator('reservation')], async function (req, res) {
     models.Reservation.create({
         startDate: req.body.reservation.startDate,
         endDate: req.body.reservation.endDate,
-        pricePerDay: req.body.reservation.pricePerDay,
-        carId: req.body.reservation.carId
+        carId: req.body.reservation.carId,
+        userId: req.body.reservation.userId
     }).then(reservation => res.status(StatusCodes.CREATED).json(reservation))
     .catch(err => {
         if (err.name == 'SequelizeForeignKeyConstraintError') {
@@ -35,7 +35,7 @@ router.get('/:reservationId', async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.put('/:reservationId', [auth.authToken, auth.isModOrAdmin, validator('reservation')], async function (req, res) {
+router.put('/:reservationId', [auth.authToken, auth.isModOrAdminOrLoggedIn, validator('reservation')], async function (req, res) {
     await models.Reservation.findByPk(req.params.reservationId)
         .then(reservation => {
             if (!reservation) {
@@ -44,8 +44,8 @@ router.put('/:reservationId', [auth.authToken, auth.isModOrAdmin, validator('res
                 reservation.update({
                     startDate: req.body.reservation.startDate,
                     endDate: req.body.reservation.endDate,
-                    pricePerDay: req.body.reservation.pricePerDay,
-                    carId: req.body.reservation.carId
+                    carId: req.body.reservation.carId,
+                    userId: req.body.reservation.userId
                 }).then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => {
                     if (err.name == 'SequelizeForeignKeyConstraintError') {
@@ -58,7 +58,7 @@ router.put('/:reservationId', [auth.authToken, auth.isModOrAdmin, validator('res
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.delete('/:reservationId', [auth.authToken, auth.isModOrAdmin], async function (req, res) {
+router.delete('/:reservationId', [auth.authToken, auth.isModOrAdminOrLoggedIn], async function (req, res) {
     await models.Reservation.destroy({
         where: {
             id: req.params.reservationId

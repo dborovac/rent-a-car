@@ -45,6 +45,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        doors: 5,
+        fuel: 'Petrol',
+        transmission: 'Manual',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        doors: 5,
+        fuel: 'Hybrid',
+        transmission: 'Automatic',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
     ]);
   },
 

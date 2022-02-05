@@ -14,7 +14,6 @@ async function addReservation() {
         reservation: {
             startDate: document.getElementById('createStartDate').value,
             endDate: document.getElementById('createEndDate').value,
-            pricePerDay: document.getElementById('createPrice').value,
             carId: document.getElementById('createCarId').value
         }
     }
@@ -38,7 +37,6 @@ async function editReservation(id) {
         reservation: {
             startDate: document.getElementById('editStartDate').value,
             endDate: document.getElementById('editEndDate').value,
-            pricePerDay: document.getElementById('editPrice').value,
             carId: document.getElementById('editCarId').value
         }
     }

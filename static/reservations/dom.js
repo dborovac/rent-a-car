@@ -4,11 +4,11 @@ function showCreateForm() {
 
 function appendListItem(list, item) {
     const listItem = document.createElement('li');
-    listItem.textContent = `ID: ${item.id}, Start date: ${item.startDate}, End date: ${item.endDate}, Price per day: ${item.pricePerDay}, Car id: ${item.carId}`;
+    listItem.textContent = `ID: ${item.id}, Start date: ${item.startDate}, End date: ${item.endDate}, Car id: ${item.carId}`;
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
-    editButton.addEventListener('click', showEditForm.bind(null, item.id, item.startDate, item.endDate, item.pricePerDay, item.carId));
+    editButton.addEventListener('click', showEditForm.bind(null, item.id, item.startDate, item.endDate, item.carId));
     editButton.setAttribute('class', 'listItemControl');
     listItem.appendChild(editButton);
 
@@ -23,7 +23,7 @@ function appendListItem(list, item) {
 
 
 
-function showEditForm(id, startDate, endDate, pricePerDay, carId) {
+function showEditForm(id, startDate, endDate, carId) {
     const editForm = document.getElementById('editReservationForm');
     editForm.style.display = 'block';
     let button;
@@ -35,7 +35,6 @@ function showEditForm(id, startDate, endDate, pricePerDay, carId) {
     editForm.appendChild(button);
     document.getElementById('editStartDate').value = startDate;
     document.getElementById('editEndDate').value = endDate;
-    document.getElementById('editPrice').value = pricePerDay;
     document.getElementById('editCarId').value = carId;
     button.textContent = 'Edit';
     button.setAttribute('id', 'editButton');

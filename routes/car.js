@@ -10,7 +10,8 @@ router.post('/', [auth.authToken, auth.isModOrAdmin, validator('car')], async fu
         manufacturer: req.body.car.manufacturer,
         model: req.body.car.model,
         year: req.body.car.year,
-        detailsId: req.body.car.detailsId
+        detailsId: req.body.car.detailsId,
+        pricePerDay: req.body.car.pricePerDay,
     })
     .then(car => res.status(StatusCodes.CREATED).json(car))
     .catch(err => {
@@ -47,7 +48,8 @@ router.put('/:carId', [auth.authToken, auth.isModOrAdmin, validator('car')], asy
                     model: req.body.car.model,
                     year: req.body.car.year,
                     detailsId: req.body.car.detailsId,
-                    image: req.body.car.image
+                    image: req.body.car.image,
+                    pricePerDay: req.body.car.pricePerDay,
                 })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => {

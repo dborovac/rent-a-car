@@ -26,7 +26,8 @@ async function addCar() {
             manufacturer: document.getElementById('createManufacturer').value,
             model: document.getElementById('createModel').value,
             year: document.getElementById('createYear').value,
-            detailsId: document.getElementById('createDetailsId').value
+            detailsId: document.getElementById('createDetailsId').value,
+            pricePerDay: document.getElementById('createPrice').value
         }
     }
 
@@ -50,7 +51,8 @@ async function editCar(id) {
             manufacturer: document.getElementById('editManufacturer').value,
             model: document.getElementById('editModel').value,
             year: document.getElementById('editYear').value,
-            detailsId: document.getElementById('editDetailsId').value
+            detailsId: document.getElementById('editDetailsId').value,
+            pricePerDay: document.getElementById('editPrice').value
         }
     };
 
