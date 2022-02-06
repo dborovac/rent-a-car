@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\""
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-history-api-fallback": "^1.6.0",
