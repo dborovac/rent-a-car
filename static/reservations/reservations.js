@@ -11,11 +11,10 @@ async function init() {
 
 async function addReservation() {
     const data = {
-        reservation: {
-            startDate: document.getElementById('createStartDate').value,
-            endDate: document.getElementById('createEndDate').value,
-            carId: document.getElementById('createCarId').value
-        }
+        startDate: document.getElementById('createStartDate').value,
+        endDate: document.getElementById('createEndDate').value,
+        carId: document.getElementById('createCarId').value,
+        userId: document.getElementById('createUserId').value
     }
 
     await fetch('http://127.0.0.1:65535/api/reservations', {
@@ -34,11 +33,10 @@ async function addReservation() {
 
 async function editReservation(id) {
     const data = {
-        reservation: {
-            startDate: document.getElementById('editStartDate').value,
-            endDate: document.getElementById('editEndDate').value,
-            carId: document.getElementById('editCarId').value
-        }
+        startDate: document.getElementById('editStartDate').value,
+        endDate: document.getElementById('editEndDate').value,
+        carId: document.getElementById('editCarId').value,
+        userId: document.getElementById('editUserId').value
     }
 
     await fetch(`http://127.0.0.1:65535/api/reservations/${id}`, {

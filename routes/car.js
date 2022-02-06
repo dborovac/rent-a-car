@@ -50,6 +50,7 @@ router.put('/:carId', [auth.authToken, auth.isModOrAdmin, validator('car')], asy
                     detailsId: req.body.car.detailsId,
                     image: req.body.car.image,
                     pricePerDay: req.body.car.pricePerDay,
+                    rating: req.body.car.rating
                 })
                 .then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => {

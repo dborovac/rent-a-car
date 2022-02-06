@@ -29,7 +29,7 @@ router.get('/:userId', async function (req, res) {
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
 });
 
-router.put('/:userId', [auth.authToken, auth.isAdmin, validator('user')], async function (req, res) {
+router.put('/:userId', [auth.authToken, auth.isAdminOrLoggedIn, validator('user')], async function (req, res) {
     await models.User.findByPk(req.params.userId)
         .then(user => {
             if (!user) {
@@ -39,7 +39,7 @@ router.put('/:userId', [auth.authToken, auth.isAdmin, validator('user')], async 
                     email: req.body.email,
                     password: bcrypt.hashSync(req.body.password, 10),
                     role: req.body.role
-                }).then(() => res.status(StatusCodes.NO_CONTENT).end())
+                }).then(user => res.status(StatusCodes.OK).json(user))
                 .catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));
             }
         }).catch(err => res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err));

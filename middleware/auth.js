@@ -23,6 +23,13 @@ function isAdmin(req, res, next) {
     next();
 }
 
+function isAdminOrLoggedIn(req, res, next) {
+    if (!(req.user.role === 'Admin' || req.user.userId === req.body.userId)) {
+        return res.status(401).json({ msg: 'Not authorized.' });
+    }
+    next();
+}
+
 function isModOrAdmin(req, res, next) {
     if (!(req.user.role === 'Admin' || req.user.role === 'Moderator')) {
         return res.status(401).json({ msg: 'Not authorized.' });
@@ -31,12 +38,12 @@ function isModOrAdmin(req, res, next) {
 }
 
 function isModOrAdminOrLoggedIn(req, res, next) {
-    console.log(req.user);
     console.log(req.body);
-    if (!(req.user.role === 'Admin' || req.user.role === 'Moderator' || req.user.userId === req.body.reservation.userId)) {
+    console.log(req.user);
+    if (!(req.user.role === 'Admin' || req.user.role === 'Moderator' || req.user.userId === req.body.userId)) {
         return res.status(401).json({ msg: 'Not authorized.' });
     }
     next();
 }
 
-module.exports = { authToken, isAdmin, isModOrAdmin, isModOrAdminOrLoggedIn };
+module.exports = { authToken, isAdmin, isAdminOrLoggedIn, isModOrAdmin, isModOrAdminOrLoggedIn };

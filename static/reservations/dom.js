@@ -4,7 +4,7 @@ function showCreateForm() {
 
 function appendListItem(list, item) {
     const listItem = document.createElement('li');
-    listItem.textContent = `ID: ${item.id}, Start date: ${item.startDate}, End date: ${item.endDate}, Car id: ${item.carId}`;
+    listItem.textContent = `ID: ${item.id}, Start date: ${item.startDate}, End date: ${item.endDate}, Car id: ${item.carId}, User id: ${item.userId}`;
 
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
@@ -36,6 +36,7 @@ function showEditForm(id, startDate, endDate, carId) {
     document.getElementById('editStartDate').value = startDate;
     document.getElementById('editEndDate').value = endDate;
     document.getElementById('editCarId').value = carId;
+    document.getElementById('editUserId').value = userId;
     button.textContent = 'Edit';
     button.setAttribute('id', 'editButton');
     button.setAttribute('onclick', `editReservation(${id})`);

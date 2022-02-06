@@ -7,10 +7,10 @@ const auth = require('../middleware/auth');
 
 router.post('/', [auth.authToken, auth.isModOrAdminOrLoggedIn, validator('reservation')], async function (req, res) {
     models.Reservation.create({
-        startDate: req.body.reservation.startDate,
-        endDate: req.body.reservation.endDate,
-        carId: req.body.reservation.carId,
-        userId: req.body.reservation.userId
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        carId: req.body.carId,
+        userId: req.body.userId
     }).then(reservation => res.status(StatusCodes.CREATED).json(reservation))
     .catch(err => {
         if (err.name == 'SequelizeForeignKeyConstraintError') {
@@ -27,7 +27,7 @@ router.get('/', async function (req, res) {
 });
 
 router.get('/:reservationId', async function (req, res) {
-    const reservation = await models.Reservation.findByPk(req.params.reservationId)
+    await models.Reservation.findByPk(req.params.reservationId)
         .then(reservation => {
             if (!reservation) {
                 res.status(StatusCodes.NOT_FOUND).send({ message: 'Reservation not found.' });
@@ -42,10 +42,10 @@ router.put('/:reservationId', [auth.authToken, auth.isModOrAdminOrLoggedIn, vali
                 res.status(StatusCodes.NOT_FOUND).send({ message: 'Reservation not found.' });
             } else {
                 reservation.update({
-                    startDate: req.body.reservation.startDate,
-                    endDate: req.body.reservation.endDate,
-                    carId: req.body.reservation.carId,
-                    userId: req.body.reservation.userId
+                    startDate: req.body.startDate,
+                    endDate: req.body.endDate,
+                    carId: req.body.carId,
+                    userId: req.body.userId
                 }).then(() => res.status(StatusCodes.NO_CONTENT).end())
                 .catch(err => {
                     if (err.name == 'SequelizeForeignKeyConstraintError') {

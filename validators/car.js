@@ -7,7 +7,8 @@ const carSchema = Joi.object().keys({
         year: Joi.number().integer().min(1900).required(),
         detailsId: Joi.number().integer().min(1).required(),
         image: Joi.string(),
-        pricePerDay: Joi.number().precision(2).required()
+        pricePerDay: Joi.number().precision(2).required(),
+        rating: Joi.number().precision(2).min(1).max(5)
     }
 })
 
