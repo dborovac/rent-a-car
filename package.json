@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "16.13.0"
+    "node": "16.13.0",
+    "npm": "8.1.0"
   },
   "scripts": {
     "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\""
