@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "npx run concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\""
+    "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
