@@ -1,4 +1,7 @@
 {
+  "name": "rent-a-car",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
     "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\""
   },
