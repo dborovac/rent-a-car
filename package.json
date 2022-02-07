@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "concurrently --kill-others \"node auth.js\" \"node admin.js\" \"node app.js\""
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -17,7 +16,8 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.12.0-beta.1",
-    "socket.io": "^4.4.1"
+    "socket.io": "^4.4.1",
+    "concurrently": "^7.0.0"
   },
   "devDependencies": {
     "sequelize-cli": "^6.3.0"
