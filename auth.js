@@ -13,6 +13,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use('/auth', authRouter);
 
-app.listen(65533, () => {
+app.listen({ port: process.env.PORT || 65533 }, () => {
     console.log("Authentication service listening on port 65533...");
 });

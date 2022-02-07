@@ -3,7 +3,6 @@ const { sequelize } = require('./models');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
-const history = require('connect-history-api-fallback');
 
 const carRouter = require('./routes/car');
 const reservationRouter = require('./routes/reservation');
@@ -39,7 +38,7 @@ app.use('/api/users', usersRouter);
 //     })
 // })
 
-app.listen(65535, async () => {
+app.listen({ port: process.env.PORT || 65535 }, async () => {
     await sequelize.authenticate();
     console.log("Rent-a-car service listening on port 65535...");
 });
